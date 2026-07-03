@@ -1,2 +1,14 @@
-# Student-Management-System
-A Java console application to manage student records using CRUD operations.
+# Student Management System
+
+This is a Java console-based application developed to manage student records.
+
+## Features
+- Add Student
+- Search Student
+- Update Student
+- Delete Student
+- Display All Students
+
+## Technologies Used
+- Java
+- VS Code
