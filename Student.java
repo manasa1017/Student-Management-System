@@ -10,7 +10,7 @@ public class Student {
     this.marks = marks;
 }
     public void display(){
-        System.out.println("Student Details");
+        System.out.println("---------------------------");
         System.out.println("ID: "+id);
         System.out.println("Name: "+name);
         System.out.println("Branch: "+branch);
