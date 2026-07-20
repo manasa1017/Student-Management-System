@@ -1,39 +1,31 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class StudentManagementSystem {
     public static void main(String args[]){
         Scanner sc=new Scanner(System.in);
-        Student s1=new Student();
-        Student s2=new Student();
-        System.out.print("Enter iD:");
-        int id=sc.nextInt();
+        ArrayList<Student>students=new ArrayList<>();
+        int choice;
+        System.out.print("Enter number of students: ");
+        int n = sc.nextInt();
         sc.nextLine();
-        System.out.print("Enter Name:");
-        String name=sc.nextLine();
-        System.out.print("Enter Branch:");
-        String branch=sc.next();
-        System.out.print("Enter Marks:");
-        double marks=sc.nextDouble();
-        s1.id=id;
-        s1.name=name;
-        s1.branch=branch;
-        s1.marks=marks;
-        s1.display();
-        System.out.println();
-        System.out.print("Enter 2nd Student ID: ");
-        id=sc.nextInt();
-        sc.nextLine();
-        System.out.print("Enter 2nd Student Name: ");
-        name=sc.nextLine();
-        System.out.print("Enter 2nd Student Branch: ");
-        branch=sc.next();
-        System.out.print("Enter 2nd Student Marks: ");
-        marks=sc.nextDouble();
-        s2.id=id;
-        s2.name=name;
-        s2.branch=branch;
-        s2.marks=marks;
-        System.out.println();
-        s2.display();
+        for(int i=1; i<=n; i++) {
+            System.out.println("\nEnter Student " + i + " Details");
+            System.out.print("Enter ID: ");
+            int id = sc.nextInt();
+            sc.nextLine();
+            System.out.print("Enter Name: ");
+            String name = sc.nextLine();
+            System.out.print("Enter Branch: ");
+            String branch = sc.nextLine();
+            System.out.print("Enter Marks: ");
+            double marks = sc.nextDouble();
+            sc.nextLine();
+            students.add(new Student(id, name, branch, marks));
+        }
+        System.out.println("\nStudent Details");
+        for(Student s : students) {
+            s.display();
+        }
     }
 }
