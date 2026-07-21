@@ -2,6 +2,49 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class StudentManagementSystem {
+    public static String getValidName(Scanner sc) {
+        String name;
+        do {
+            System.out.print("Enter Name: ");
+            name = sc.nextLine().trim();
+            if(name.isEmpty()) {
+                System.out.println("Name cannot be empty!");
+            }
+        }
+        while(name.isEmpty());
+        return name;
+    }
+    public static String getValidBranch(Scanner sc) {
+        String branch;
+        do {
+            System.out.print("Enter Branch: ");
+            branch = sc.nextLine().trim();
+            if(branch.isEmpty()) {
+                System.out.println("Branch cannot be empty!");
+            }
+        } while(branch.isEmpty());
+        return branch;
+    }
+    public static double getValidMarks(Scanner sc) {
+        double marks;
+        do {
+            System.out.print("Enter Marks (0-100): ");
+            marks = sc.nextDouble();
+            if(marks < 0 || marks > 100) {
+                System.out.println("Invalid Marks! Please enter marks between 0 and 100.");
+            }
+        } while(marks < 0 || marks > 100);
+        sc.nextLine();
+        return marks;
+    }
+    public static boolean isDuplicateId(ArrayList<Student> students, int id) {
+        for(Student s : students) {
+            if(s.id == id) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public static void main(String args[]) {
 
@@ -33,45 +76,14 @@ public class StudentManagementSystem {
                         System.out.print("Enter ID: ");
                         int id = sc.nextInt();
                         sc.nextLine();
-                        boolean exists = false;
-                        for(Student s : students) {
-                            if(s.id == id) {
-                                exists = true;
-                                break;
-                            }
-                        }
-                        if(exists) {
+                        if(isDuplicateId(students, id)) {
                             System.out.println("Student ID already exists!");
                             i--;
                             continue;
                         }
-                        String name;
-                        do {
-                            System.out.print("Enter Name: ");
-                            name = sc.nextLine().trim();
-                            if(name.isEmpty()) {
-                                System.out.println("Name cannot be empty!");
-                            }
-                        }
-                        while(name.isEmpty());
-                        String branch;
-                        do {
-                            System.out.print("Enter Branch: ");
-                            branch = sc.nextLine().trim();
-                            if(branch.isEmpty()) {
-                                System.out.println("Branch cannot be empty!");
-                            }
-                        }
-                        while(branch.isEmpty());
-                        double marks;
-                        do {
-                            System.out.print("Enter Marks (0-100): ");
-                            marks = sc.nextDouble();
-                            if(marks < 0 || marks > 100) {
-                                System.out.println("Invalid Marks! Please enter marks between 0 and 100.");
-                            }
-                        } while(marks < 0 || marks > 100);
-                        sc.nextLine();
+                        String name = getValidName(sc);
+                        String branch = getValidBranch(sc);
+                        double marks = getValidMarks(sc);
                         students.add(new Student(id, name, branch, marks));
                     }
                     System.out.println("Students Added Successfully!");
@@ -118,29 +130,9 @@ public class StudentManagementSystem {
                     boolean updated = false;
                     for(Student s : students) {
                         if(s.id == updateId) {
-                            do {
-                                System.out.print("Enter New Name: ");
-                                s.name = sc.nextLine().trim();
-                                if(s.name.isEmpty()) {
-                                    System.out.println("Name cannot be empty!");
-                                }
-                            } while(s.name.isEmpty());
-                            do {
-                                System.out.print("Enter New Branch: ");
-                                s.branch = sc.nextLine().trim();
-                                if(s.branch.isEmpty()) {
-                                    System.out.println("Branch cannot be empty!");
-                                }
-                            } while(s.branch.isEmpty());
-                            do {
-                                System.out.print("Enter New Marks (0-100): ");
-                                s.marks = sc.nextDouble();
-                                if(s.marks < 0 || s.marks > 100) {
-                                    System.out.println("Invalid Marks! Please enter marks between 0 and 100.");
-                                }
-                            }
-                            while(s.marks < 0 || s.marks > 100);
-                            sc.nextLine();
+                            s.name = getValidName(sc);
+                            s.branch = getValidBranch(sc);
+                            s.marks = getValidMarks(sc);
                             updated = true;
                             System.out.println("Student Updated Successfully!");
                             break;
