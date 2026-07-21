@@ -60,7 +60,8 @@ public class StudentManagementSystem {
             System.out.println("3. Search Student");
             System.out.println("4. Update Student");
             System.out.println("5. Delete Student");
-            System.out.println("6. Exit");
+            System.out.println("6. Display Topper");
+            System.out.println("7. Exit");
 
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
@@ -162,8 +163,21 @@ public class StudentManagementSystem {
                         System.out.println("Student ID Not Found!");
                     }
                     break;
-
                 case 6:
+                    if(students.isEmpty()) {
+                        System.out.println("No Students Found!");
+                        break;
+                    }
+                    Student topper = students.get(0);
+                    for(Student s : students) {
+                        if(s.marks > topper.marks) {
+                            topper = s;
+                        }
+                    }
+                    System.out.println("\n===== TOPPER DETAILS =====");
+                    topper.display();
+                    break;
+                case 7:
                     System.out.println("Thank you for using the Student Management System.");
                     break;
 
@@ -171,7 +185,7 @@ public class StudentManagementSystem {
                     System.out.println("Invalid Choice!");
             }
 
-        } while(choice != 6);
+        } while(choice != 7);
 
         sc.close();
     }
