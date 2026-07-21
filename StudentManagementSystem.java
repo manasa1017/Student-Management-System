@@ -88,6 +88,10 @@ public class StudentManagementSystem {
                     }
                     break;
                 case 3:
+                    if(students.isEmpty()) {
+                        System.out.println("No Students Found!");
+                        break;
+                    }
                     System.out.print("Enter Student ID to Search: ");
                     int searchId = sc.nextInt();
                     boolean found = false;
@@ -104,6 +108,10 @@ public class StudentManagementSystem {
                     }
                     break;
                 case 4:
+                    if(students.isEmpty()) {
+                        System.out.println("No Students Found!");
+                        break;
+                    }
                     System.out.print("Enter Student ID to Update: ");
                     int updateId = sc.nextInt();
                     sc.nextLine();
@@ -143,6 +151,10 @@ public class StudentManagementSystem {
                     }
                     break;
                 case 5:
+                    if(students.isEmpty()) {
+                        System.out.println("No Students Found!");
+                        break;
+                    }
                     System.out.print("Enter Student ID to Delete: ");
                     int deleteId = sc.nextInt();
                     boolean deleted = false;
