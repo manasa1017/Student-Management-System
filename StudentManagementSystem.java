@@ -61,7 +61,8 @@ public class StudentManagementSystem {
             System.out.println("4. Update Student");
             System.out.println("5. Delete Student");
             System.out.println("6. Display Topper");
-            System.out.println("7. Exit");
+            System.out.println("7. Calculate Average Marks");
+            System.out.println("8. Exit");
 
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
@@ -178,6 +179,18 @@ public class StudentManagementSystem {
                     topper.display();
                     break;
                 case 7:
+                    if(students.isEmpty()) {
+                        System.out.println("No Students Found!");
+                        break;
+                    }
+                    double total = 0;
+                    for(Student s : students) {
+                        total += s.marks;
+                    }
+                    double average = total / students.size();
+                    System.out.printf("Average Marks = %.2f%n" , average);
+                    break;
+                case 8:
                     System.out.println("Thank you for using the Student Management System.");
                     break;
 
@@ -185,7 +198,7 @@ public class StudentManagementSystem {
                     System.out.println("Invalid Choice!");
             }
 
-        } while(choice != 7);
+        } while(choice != 8);
 
         sc.close();
     }
