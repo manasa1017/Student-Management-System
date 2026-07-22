@@ -54,7 +54,6 @@ public class StudentManagementSystem {
 
         do {
 
-            System.out.println("\n===== STUDENT MANAGEMENT SYSTEM =====");
             System.out.println("1. Add Student");
             System.out.println("2. Display Students");
             System.out.println("3. Search Student");
@@ -62,7 +61,10 @@ public class StudentManagementSystem {
             System.out.println("5. Delete Student");
             System.out.println("6. Display Topper");
             System.out.println("7. Calculate Average Marks");
-            System.out.println("8. Exit");
+            System.out.println("8. Sort Students by Marks");
+            System.out.println("9. Sort Students by Name");
+            System.out.println("10. Highest & Lowest Marks");
+            System.out.println("11. Exit");
 
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
@@ -191,6 +193,62 @@ public class StudentManagementSystem {
                     System.out.printf("Average Marks = %.2f%n" , average);
                     break;
                 case 8:
+                    if(students.isEmpty()) {
+                        System.out.println("No Students Found!");
+                        break;
+                    }
+                    for(int i = 0; i < students.size() - 1; i++) {
+                        for(int j = 0; j < students.size() - i - 1; j++) {
+                            if(students.get(j).marks < students.get(j + 1).marks) {
+                                Student temp = students.get(j);
+                                students.set(j, students.get(j + 1));
+                                students.set(j + 1, temp);
+                            }
+                        }
+                    }
+                    System.out.println("\n===== STUDENTS SORTED BY MARKS =====");
+                    for(Student s : students) {
+                        s.display();
+                    }
+                    break;
+                    case 9:
+                        if(students.isEmpty()) {
+                            System.out.println("No Students Found!");
+                            break;
+                        }
+                        for(int i = 0; i < students.size() - 1; i++) {
+                            for(int j = 0; j < students.size() - i - 1; j++) {
+                                if(students.get(j).name.compareToIgnoreCase(students.get(j + 1).name) > 0) {
+                                    Student temp = students.get(j);
+                                    students.set(j, students.get(j + 1));
+                                    students.set(j + 1, temp);
+                                }
+                            }
+                        }
+                        System.out.println("\n===== STUDENTS SORTED BY NAME =====");
+                        for(Student s : students) {
+                            s.display();
+                        }
+                        break;
+                case 10:
+                    if(students.isEmpty()) {
+                        System.out.println("No Students Found!");
+                        break;
+                    }
+                    Student highest = students.get(0);
+                    Student lowest = students.get(0);
+                    for(Student s : students) {
+                        if(s.marks > highest.marks)
+                            highest = s;
+                        if(s.marks < lowest.marks)
+                            lowest = s;
+                        }
+                        System.out.println("\n===== HIGHEST MARKS STUDENT =====");
+                        highest.display();
+                        System.out.println("\n===== LOWEST MARKS STUDENT =====");
+                        lowest.display();
+                        break;
+                case 11:
                     System.out.println("Thank you for using the Student Management System.");
                     break;
 
@@ -198,7 +256,7 @@ public class StudentManagementSystem {
                     System.out.println("Invalid Choice!");
             }
 
-        } while(choice != 8);
+        } while(choice != 11);
 
         sc.close();
     }

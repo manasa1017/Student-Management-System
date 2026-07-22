@@ -15,5 +15,19 @@ public class Student {
         System.out.println("Name: "+name);
         System.out.println("Branch: "+branch);
         System.out.println("Marks: "+marks);
+        String grade;
+        if(marks >= 90)
+            grade = "A+";
+        else if(marks >= 80)
+            grade = "A";
+        else if(marks >= 70)
+            grade = "B";
+        else if(marks >= 60)
+            grade = "C";
+        else if(marks >= 50)
+            grade = "D";
+        else
+            grade = "F";
+        System.out.println("Grade : " + grade);
     }
 }
